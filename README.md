@@ -1,10 +1,13 @@
 # Solis-Crypto
 
-Backend de solução para saques de criptomoedas como moeda fiduciária
+Solution backend for cryptocurrency withdrawals as fiat currency
 
-Tarefas:
+Tasks:
+- [x] Authentication
 
-- [x] Autenticação
-- [] Depósito
-    (Transações via Coinbase)
-- [] Pedidos de saque
+- [ ] Deposit
+    - [ ] Coinbase integration
+    - [ ] Fiat amount conversation
+    - [ ] Release of amounts
+
+- [ ] Withdrawal requests
