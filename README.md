@@ -1,6 +1,6 @@
 # Solis-Crypto
 
-Solution backend for cryptocurrency withdrawals as fiat currency
+Solution backend for cryptocurrency withdraws as fiat currency
 
 Tasks:
 - [x] Authentication
