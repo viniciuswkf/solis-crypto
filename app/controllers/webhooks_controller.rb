@@ -44,7 +44,13 @@ class WebhooksController < ApplicationController
   def handle_deposit(event)
 
     external_id = event.dig('data', 'id')
-    paid_amount = event.dig('data', 'payments', 0, 'value', 'local', 'amount').to_i * 100
+    paid_amount = event.dig('data', 'payments', 0, 'value', 'local', 'amount')
+
+    if paid_amount.nil?
+      return
+    end
+
+    parsed_paid_amount = paid_amount.to_i * 100
 
     deposit = Deposit.find_by(external_id: external_id)
 
@@ -58,13 +64,13 @@ class WebhooksController < ApplicationController
       return
     end
 
-    user.update({balance: user.balance + paid_amount})
+    user.update({balance: user.balance + parsed_paid_amount})
     deposit.update({status: 'completed'})
 
     if user.save && deposit.save
-      puts "DB | Sucesso no depósito de #{paid_amount / 100} BRL para #{user.email}!"
+      puts "DB | Sucesso no depósito de #{parsed_paid_amount / 100} BRL para #{user.email}!"
     else
-      puts "DB | Falha no depósito de #{paid_amount / 100} BRL para #{user.email}!"
+      puts "DB | Falha no depósito de #{parsed_paid_amount / 100} BRL para #{user.email}!"
     end
   end
 
