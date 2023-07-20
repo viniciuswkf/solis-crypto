@@ -17,7 +17,27 @@ class DepositsController < ApplicationController
   # POST /deposits
   def create
 
-    @deposit = Deposit.new({amount: params[:amount], user_id: @current_user.id, status: "pending"})
+    amount = params[:amount]
+
+    if amount.nil? || amount.to_i < 1000 #10.00 BRL
+      render json: { errors: ["Amount is missing or smaller than 10 BRL"] }, status: :unprocessable_entity
+      return
+    end
+
+    # Create coinbase order
+
+    coinbase_service = CoinbaseService.new(ENV["COINBASE_API_KEY"])
+    result = coinbase_service.create_deposit(amount, @current_user)
+
+    if result.nil?
+      render json: { errors: ["Internal server error creating deposit"] }, status: :unprocessable_entity
+      return
+    end
+
+    addresses = result["data"]["addresses"]
+    pricing = result["data"]["pricing"]
+
+    @deposit = Deposit.new({amount: amount, pricing: pricing, addresses: addresses, user_id: @current_user.id, status: "pending"})
 
     if @deposit.save
       render json: @deposit, status: :created, location: @deposit
