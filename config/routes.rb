@@ -9,5 +9,7 @@ Rails.application.routes.draw do
 
   resources :transactions, only: %i[ index ]
 
+  post "/webhooks", to: "webhooks#handle_coinbase_payments"
+
   get "/*a", to: "application#not_found"
 end

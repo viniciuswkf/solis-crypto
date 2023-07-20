@@ -4,8 +4,9 @@ class CreateDeposits < ActiveRecord::Migration[7.0]
       t.integer :amount
       t.json :pricing
       t.json :addresses
-      t.integer :user_id
       t.string :status
+      t.integer :user_id
+      t.string :external_id
 
       t.timestamps
     end

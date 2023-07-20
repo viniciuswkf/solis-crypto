@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(create_user_params)
+    @user = User.new({email: params[:email], password: params[:password], name: params[:name], balance: 0})
     if @user.save
       token = JsonWebToken.encode(user_id: @user.id)
       time = Time.now + 24.hours.to_i

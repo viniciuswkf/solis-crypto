@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_20_001405) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_21_001405) do
   create_table "deposits", force: :cascade do |t|
     t.integer "amount"
     t.json "pricing"
     t.json "addresses"
     t.integer "user_id"
+    t.string "external_id"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

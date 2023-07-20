@@ -6,11 +6,4 @@ class User < ApplicationRecord
             length: { minimum: 6 },
             if: -> { new_record? || !password.nil? }
 
-  before_validation :set_default_balance
-
-  private
-
-  def set_default_balance
-    self.balance = 0
-  end
 end

@@ -17,6 +17,7 @@ class DepositsController < ApplicationController
   # POST /deposits
   def create
 
+
     amount = params[:amount]
 
     if amount.nil? || amount.to_i < 1000 #10.00 BRL
@@ -33,10 +34,11 @@ class DepositsController < ApplicationController
       return
     end
 
+    external_id = result["data"]["id"]
     addresses = result["data"]["addresses"]
     pricing = result["data"]["pricing"]
 
-    @deposit = Deposit.new({amount: amount, pricing: pricing, addresses: addresses, user_id: @current_user.id, status: "pending"})
+    @deposit = Deposit.new({amount: amount, external_id: external_id, pricing: pricing, addresses: addresses, user_id: @current_user.id, status: "pending"})
 
     if @deposit.save
       render json: @deposit, status: :created, location: @deposit

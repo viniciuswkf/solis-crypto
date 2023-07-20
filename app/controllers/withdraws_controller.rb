@@ -22,7 +22,7 @@ class WithdrawsController < ApplicationController
     payment_method = params[:payment_method]
     payment_method_target = params[:payment_method_target]
 
-    if amount.nil? || amount.to_i < 200 #20.00 BRL
+    if amount.nil? || amount.to_i < 2000 #0.00 BRL
       render json: { errors: ["Amount is missing or smaller than 20 BRL"] }, status: :unprocessable_entity
       return
     end
