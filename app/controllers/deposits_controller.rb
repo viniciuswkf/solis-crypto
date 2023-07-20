@@ -11,11 +11,7 @@ class DepositsController < ApplicationController
 
   # GET /deposits/1
   def show
-    if @deposit.user_id == @current_user.id
-      render json: @deposit
-    else
-      render json: { errors: ["Unauthorized"] }, status: :unauthorized
-    end
+    render json: @deposit
   end
 
   # POST /deposits
@@ -33,14 +29,8 @@ class DepositsController < ApplicationController
 
   # DELETE /deposits/1
   def destroy
-
-    if @deposit.user_id == @current_user.id
       @deposit.destroy
       render status: :ok
-    else
-      render json: { errors: ["Unauthorized"] }, status: :unauthorized
-    end
-
   end
 
   private
@@ -48,6 +38,11 @@ class DepositsController < ApplicationController
     def set_deposit
       begin
         @deposit = Deposit.find(params[:id])
+
+        if @deposit.user_id != @current_user.id
+          render json: { errors: ["Unauthorized"] }, status: :unauthorized
+        end
+
       rescue
         render json: {errors: ["Deposit not found"]}, status: :not_found
       end
