@@ -20,6 +20,11 @@ COINBASE_API_KEY = ENV['COINBASE_API_KEY']
 
 module BackSolisCrypto
   class Application < Rails::Application
+    config.generators do |g|
+      g.orm :active_record, primary_key_type: :uuid
+    end
+
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 

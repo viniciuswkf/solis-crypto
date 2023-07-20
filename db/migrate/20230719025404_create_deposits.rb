@@ -1,6 +1,6 @@
 class CreateDeposits < ActiveRecord::Migration[7.0]
   def change
-    create_table :deposits do |t|
+    create_table :deposits, id: :string do |t|
       t.integer :amount
       t.json :pricing
       t.json :addresses

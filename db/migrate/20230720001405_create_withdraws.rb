@@ -1,6 +1,6 @@
 class CreateWithdraws < ActiveRecord::Migration[7.0]
   def change
-    create_table :withdraws do |t|
+    create_table :withdraws, id: :string do |t|
       t.integer :amount
       t.string :status
       t.string :payment_method
