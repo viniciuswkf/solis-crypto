@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_19_025404) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_20_001405) do
   create_table "deposits", force: :cascade do |t|
     t.integer "amount"
     t.json "pricing"
@@ -26,6 +26,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_025404) do
     t.string "email"
     t.string "password_digest"
     t.integer "balance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "withdraws", force: :cascade do |t|
+    t.integer "amount"
+    t.string "status"
+    t.string "payment_method"
+    t.string "payment_method_target"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
