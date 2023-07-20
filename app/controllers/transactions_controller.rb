@@ -1,7 +1,6 @@
 class TransactionsController  < ApplicationController
   before_action :authorize_request
 
-
   def index
     deposits = Deposit.where(user_id: @current_user.id)
     deposits_with_type = deposits.map { |deposit| deposit.attributes.merge("type" => "deposit") }
@@ -22,5 +21,6 @@ class TransactionsController  < ApplicationController
 
     render json: recents_sorted_transactions
   end
+
 
 end
