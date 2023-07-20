@@ -6,5 +6,8 @@ Rails.application.routes.draw do
   resources :deposits, param: :id, only: %i[ index show create delete ]
   resources :users, param: :id, only: %i[ create update ]
   resources :sessions, only: %i[ index create ]
+
+  resources :transactions, only: %i[ index ]
+
   get "/*a", to: "application#not_found"
 end
