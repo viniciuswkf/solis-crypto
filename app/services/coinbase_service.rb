@@ -1,6 +1,5 @@
 # app/services/payment_service.rb
 require 'httparty'
-require 'dotenv/load'
 
 class CoinbaseService
   include HTTParty
