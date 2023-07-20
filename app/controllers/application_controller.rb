@@ -1,9 +1,17 @@
 require "./lib/json_web_token"
 
 class ApplicationController < ActionController::API
+
+
+  def index
+    render json: { version: "v1" }
+  end
+
+
   def not_found
     render json: { error: "not_found" }
   end
+
 
   def authorize_request
     header = request.headers["Authorization"]
