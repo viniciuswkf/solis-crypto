@@ -6,9 +6,9 @@ Solution backend for cryptocurrency withdraws as fiat currency
 - [x] Authentication
 
 - [x] Deposit
-    - [x] CRUD 
+    - [x] CRUD
     - [x] Coinbase integration
-    - [ ] Release of amounts to user
+    - [x] Release of amounts to user
 
 - [x] Withdrawal requests
 
@@ -20,12 +20,12 @@ POST /sessions
 GET /sessions
 
 POST /deposits
-GET /deposits  
+GET /deposits
 GET /deposits/:id
-DELETE /deposits/:id 
+DELETE /deposits/:id
 
-POST /withdraws  
+POST /withdraws
 GET /withdraws
 GET /withdraws/:id
-DELETE /withdraws/:id 
+DELETE /withdraws/:id
 ```
