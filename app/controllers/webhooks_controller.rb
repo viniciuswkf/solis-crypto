@@ -15,7 +15,7 @@ class WebhooksController < ApplicationController
       when 'UNRESOLVED'
         handle_deposit(params.dig('event'))
       when 'EXPIRED'
-
+        handle_expired_deposit(params.dig('event'))
       end
     else
       # Handle the case when "timeline" is nil or empty
@@ -27,7 +27,22 @@ class WebhooksController < ApplicationController
 
 
   private
+  # expired
+  def handle_expired_deposit(event)
+    external_id = event.dig('data', 'id')
+    deposit = Deposit.find_by(external_id: external_id)
+
+    if deposit.nil?
+      return
+    end
+
+    deposit.update({status: 'expired'})
+  end
+
+
+  # completed
   def handle_deposit(event)
+
     external_id = event.dig('data', 'id')
     paid_amount = event.dig('data', 'payments', 0, 'value', 'local', 'amount').to_i * 100
 
@@ -43,9 +58,10 @@ class WebhooksController < ApplicationController
       return
     end
 
-    user.update({balance: paid_amount})
+    user.update({balance: user.balance + paid_amount})
+    deposit.update({status: 'completed'})
 
-    if user.save
+    if user.save && deposit.save
       puts "DB | Sucesso no depósito de #{paid_amount / 100} BRL para #{user.email}!"
     else
       puts "DB | Falha no depósito de #{paid_amount / 100} BRL para #{user.email}!"
