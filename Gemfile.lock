@@ -180,6 +180,7 @@ DEPENDENCIES
   jwt
   puma (~> 5.0)
   rails (~> 7.0.6)
+  rake (= 13.0.6)
   sorbet
   sqlite3 (~> 1.4)
   tzinfo-data
