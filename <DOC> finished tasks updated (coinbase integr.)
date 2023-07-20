@@ -7,8 +7,7 @@ Tasks:
 
 - [x] Deposit
     - [x] CRUD 
-    - [ ] Coinbase integration
-    - [ ] Fiat amount conversation
-    - [ ] Release of amounts
+    - [x] Coinbase integration
+    - [ ] Release of amounts to user
 
 - [x] Withdrawal requests
