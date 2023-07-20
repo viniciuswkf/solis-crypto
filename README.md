@@ -2,7 +2,7 @@
 
 Solution backend for cryptocurrency withdraws as fiat currency
 
-Tasks:
+### Tasks:
 - [x] Authentication
 
 - [x] Deposit
@@ -11,3 +11,21 @@ Tasks:
     - [ ] Release of amounts to user
 
 - [x] Withdrawal requests
+
+### ENDPOINTS:
+```
+POST /users
+
+POST /sessions
+GET /sessions
+
+POST /deposits
+GET /deposits  
+GET /deposits/:id
+DELETE /deposits/:id 
+
+POST /withdraws  
+GET /withdraws
+GET /withdraws/:id
+DELETE /withdraws/:id 
+```
