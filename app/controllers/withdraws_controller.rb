@@ -40,6 +40,11 @@ class WithdrawsController < ApplicationController
       return
     end
 
+    if amount > @current_user.balance
+      render json: { errors: ["Insufficient funds"] }, status: :unprocessable_entity
+      return
+    end
+
     @withdraw = Withdraw.new(user_id: @current_user.id, amount: amount, payment_method: payment_method, payment_method_target: payment_method_target)
 
     if @withdraw.save
