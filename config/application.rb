@@ -5,6 +5,16 @@ require "rails/all"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+# config/application.rb
+
+# Load dotenv only in development or test environment
+if ['development', 'test'].include? ENV['RAILS_ENV']
+  Dotenv::Railtie.load
+end
+
+COINBASE_API_KEY = ENV['COINBASE_API_KEY']
+
+p COINBASE_API_KEY
 
 module BackSolisCrypto
   class Application < Rails::Application
