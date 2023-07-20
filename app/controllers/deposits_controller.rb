@@ -25,7 +25,6 @@ class DepositsController < ApplicationController
     end
 
     # Create coinbase order
-
     coinbase_service = CoinbaseService.new(ENV["COINBASE_API_KEY"])
     result = coinbase_service.create_deposit(amount, @current_user)
 
