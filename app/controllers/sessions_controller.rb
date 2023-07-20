@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
 
 
   def index
-    render json: @current_user
+    render json: { id: @current_user.id, name: @current_user.name, balance: @current_user.balance, email: @current_user.email }
   end
 
   def create
@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M")
                       }, status: :ok
     else
-      render json: { error: 'Invalid credentials' }, status: :unauthorized
+      render json: { errors:[ 'Invalid credentials'] }, status: :unauthorized
     end
   end
 
