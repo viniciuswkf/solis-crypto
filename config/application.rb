@@ -17,7 +17,6 @@ end
 
 COINBASE_API_KEY = ENV['COINBASE_API_KEY']
 
-p COINBASE_API_KEY
 
 module BackSolisCrypto
   class Application < Rails::Application
@@ -36,5 +35,8 @@ module BackSolisCrypto
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    config.assets.enabled = false
+
   end
 end
