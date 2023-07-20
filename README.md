@@ -5,9 +5,10 @@ Solution backend for cryptocurrency withdraws as fiat currency
 Tasks:
 - [x] Authentication
 
-- [ ] Deposit
+- [x] Deposit
+    - [x] CRUD 
     - [ ] Coinbase integration
     - [ ] Fiat amount conversation
     - [ ] Release of amounts
 
-- [ ] Withdrawal requests
+- [x] Withdrawal requests
