@@ -13,12 +13,6 @@ Solution backend for cryptocurrency withdraws as fiat currency
 - [x] Withdrawal requests
 
 
-Extra to-do:
-
-- [ ] Change numeric id to UUID
-- [ ] Improve security details
-- [ ] Test all business logic
-
 ### ENDPOINTS:
 ```
 POST /users
